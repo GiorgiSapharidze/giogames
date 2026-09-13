@@ -23,8 +23,6 @@
     --faint: #555555;
 
     --green: #b7d66b;
-    --red: #e47d67;
-    --blue: #8da9e8;
 
     --display: "Space Grotesk", sans-serif;
     --mono: "DM Mono", monospace;
@@ -52,7 +50,7 @@
     color: var(--bg);
   }
 
-  /* ---------------- HEADER ---------------- */
+  /* HEADER */
 
   header {
     max-width: 1080px;
@@ -113,7 +111,7 @@
     font-weight: 500;
   }
 
-  /* ---------------- MAIN ---------------- */
+  /* MAIN */
 
   main {
     max-width: 1080px;
@@ -146,7 +144,7 @@
     color: var(--faint);
   }
 
-  /* ---------------- GAME LIST ---------------- */
+  /* GAME LIST */
 
   .game-list {
     display: flex;
@@ -154,8 +152,6 @@
   }
 
   .game {
-    position: relative;
-
     display: grid;
     grid-template-columns: 72px 1fr auto;
     align-items: center;
@@ -180,8 +176,6 @@
     padding-right: 28px;
   }
 
-  /* number */
-
   .game-number {
     font-family: var(--mono);
     font-size: 12px;
@@ -189,39 +183,6 @@
     align-self: flex-start;
     padding-top: 4px;
   }
-
-  /* icon */
-
-  .game-icon {
-    position: absolute;
-    left: 18px;
-    bottom: 22px;
-
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: var(--green);
-
-    opacity: 0.9;
-
-    transition:
-      transform 0.2s ease,
-      color 0.2s ease;
-  }
-
-  .game:hover .game-icon {
-    transform: translateY(-3px);
-  }
-
-  .game:nth-child(2) .game-icon {
-    color: var(--red);
-  }
-
-  /* text */
 
   .game-info {
     min-width: 0;
@@ -252,8 +213,6 @@
     font-size: 14px;
   }
 
-  /* arrow */
-
   .game-arrow {
     font-size: 24px;
     color: var(--faint);
@@ -268,7 +227,7 @@
     color: var(--text);
   }
 
-  /* ---------------- EMPTY ---------------- */
+  /* EMPTY */
 
   .empty {
     display: grid;
@@ -298,7 +257,7 @@
     color: var(--muted);
   }
 
-  /* ---------------- FOOTER ---------------- */
+  /* FOOTER */
 
   footer {
     max-width: 1080px;
@@ -317,12 +276,16 @@
     color: var(--faint);
   }
 
-  footer b {
+  footer .love {
     color: var(--muted);
-    font-weight: 400;
   }
 
-  /* ---------------- MOBILE ---------------- */
+  footer .heart {
+    color: var(--green);
+    padding: 0 4px;
+  }
+
+  /* MOBILE */
 
   @media (max-width: 650px) {
 
@@ -352,7 +315,7 @@
       grid-template-columns: 42px 1fr auto;
       gap: 14px;
 
-      min-height: 145px;
+      min-height: 135px;
       padding: 22px 8px;
     }
 
@@ -363,19 +326,6 @@
 
     .game-number {
       font-size: 10px;
-    }
-
-    .game-icon {
-      left: 8px;
-      bottom: 18px;
-
-      width: 34px;
-      height: 34px;
-    }
-
-    .game-icon svg {
-      width: 34px;
-      height: 34px;
     }
 
     .game-title {
@@ -398,13 +348,13 @@
     footer {
       padding: 24px 20px;
       flex-direction: column;
+      align-items: flex-start;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     *,
-    *::before,
-    *::after {
+    *::before {
       transition: none !important;
       scroll-behavior: auto !important;
     }
@@ -417,15 +367,22 @@
 <header>
 
   <div class="topline">
-    <div class="logo">gio.games</div>
+
+    <div class="logo">
+      gio.games
+    </div>
 
     <div class="status">
       <span class="status-dot"></span>
       currently making stuff
     </div>
+
   </div>
 
-  <h1>games<br>i made.</h1>
+  <h1>
+    games<br>
+    i made.
+  </h1>
 
   <p class="intro">
     <strong>Small games, experiments and stupid ideas.</strong>
@@ -438,9 +395,15 @@
 <main>
 
   <div class="section-header">
-    <div class="section-title">games</div>
+
+    <div class="section-title">
+      games
+    </div>
+
     <div class="game-count" id="gameCount"></div>
+
   </div>
+
 
   <div class="game-list" id="gameList"></div>
 
@@ -448,8 +411,17 @@
 
 
 <footer>
-  <div>gio games</div>
-  <div>made by <b>giorgi</b></div>
+
+  <div>
+    gio games
+  </div>
+
+  <div class="love">
+    made by gio
+    <span class="heart">·</span>
+    with love
+  </div>
+
 </footer>
 
 
@@ -461,46 +433,21 @@ const games = [
     title: "Orbit Snake",
     tag: "arcade",
     desc: "snake but on an orbit.",
-    href: "orbit-snake",
-    color: "green",
-
-    icon: `
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="12" cy="12" r="4"/>
-        <ellipse cx="12" cy="12" rx="10" ry="4"/>
-      </svg>
-    `
+    href: "orbit-snake"
   },
 
   {
     title: "Typer",
     tag: "speed",
     desc: "collect the most words.",
-    href: "typer",
-    color: "red",
+    href: "typer"
+  },
 
-    icon: `
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
-        <path d="m15 5 4 4"/>
-      </svg>
-    `
+  {
+    title: "Wordle GE",
+    tag: "word",
+    desc: "wordle, but in georgian.",
+    href: "wordle-ge"
   }
 
 ];
@@ -508,6 +455,7 @@ const games = [
 
 const list = document.getElementById("gameList");
 const count = document.getElementById("gameCount");
+
 
 count.textContent =
   `${String(games.length).padStart(2, "0")} available`;
@@ -546,10 +494,6 @@ games.forEach((game, index) => {
       ↗
     </div>
 
-    <div class="game-icon">
-      ${game.icon}
-    </div>
-
   `;
 
   list.appendChild(item);
@@ -557,7 +501,7 @@ games.forEach((game, index) => {
 });
 
 
-/* fake empty slots */
+/* Empty future games */
 
 for (let i = games.length; i < games.length + 3; i++) {
 
@@ -578,6 +522,7 @@ for (let i = games.length; i < games.length + 3; i++) {
   `;
 
   list.appendChild(empty);
+
 }
 
 </script>
