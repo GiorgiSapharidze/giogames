@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -444,6 +443,13 @@ const games = [
     title: "Wordle GE",
     desc: "wordle, but in georgian.",
     href: "wordle-ge"
+  },
+
+  {
+    title: "Momentum Runner",
+    desc: "fast-paced runner hosted on itch.io.",
+    href: "https://ziplocprod.itch.io/momentum-runner",
+    external: true
   }
 
 ];
@@ -463,6 +469,11 @@ games.forEach((game, index) => {
 
   item.className = "game";
   item.href = game.href;
+  
+  if (game.external) {
+    item.target = "_blank";
+    item.rel = "noopener noreferrer";
+  }
 
   item.innerHTML = `
 
